@@ -140,12 +140,12 @@ const TextField = () => {
     const quoteDiv = document.getElementById("words")
     printWords(quoteDiv)
 
-  }, [quote, printWords])
+  }, [quote])
 
   useEffect(() => {
     checkErrors()
 
-  }, [wordInput, checkErrors])
+  }, [wordInput])
 
   return (
     <div id="window" className='w-full flex flex-col bg-neutral-900'>
