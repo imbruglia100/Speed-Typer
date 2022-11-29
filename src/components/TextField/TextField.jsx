@@ -33,13 +33,12 @@ const TextField = () => {
         })
         quoteDiv.appendChild(child)
       })
+      quoteDiv.scrollIntoView()
     }
-    quoteDiv.scrollIntoView();
   }
 
   const startGame = () => {
     const wordIn = document.getElementById("wordInput")
-
     wordIn.disabled = false
     wordIn.value = ""
     wordIn.focus()
@@ -76,9 +75,25 @@ const TextField = () => {
       let letterIndex = wordInput[index].split('').length - 1;
       let currentWordToCheckDiv = wordsToCheck.children[index]
       currentWordToCheckDiv.scrollIntoView();
-      //check if we have gone over the letter limit for the current word to check
+
+      //check if are under the letter limit for the current word to check
       if (letterIndex <= currentWordToCheckDiv.children.length - 1) {
         let currentLetterToCheckDiv = currentWordToCheckDiv.children[letterIndex]
+        let nextLetterToCheck = currentWordToCheckDiv.children[letterIndex + 1]
+        
+        nextLetterToCheck?.classList.remove("text-neutral-200")
+        nextLetterToCheck?.classList.remove("text-red-600")
+
+        if (nextLetterToCheck?.classList.contains("error")) {
+          nextLetterToCheck.remove()
+        }
+
+        if (!nextLetterToCheck) {
+          const firstLetterOfNextWord = currentWordToCheckDiv.nextSibling.children[0]
+          firstLetterOfNextWord.classList.remove("text-neutral-200")
+          firstLetterOfNextWord.classList.remove("text-red-600")
+        }
+
         if (wordInput[index][letterIndex] === currentLetterToCheckDiv.innerHTML) {
           currentLetterToCheckDiv.classList.add('text-neutral-200')
         }
@@ -90,7 +105,7 @@ const TextField = () => {
         //if we go over the letter limit we will add the letter to the end of that word as an error
         const errorLetter = document.createElement('div')
         errorLetter.innerText = wordInput[index][letterIndex]
-        errorLetter.classList = "text-red-600"
+        errorLetter.classList = "text-red-600 error"
         currentWordToCheckDiv.appendChild(errorLetter)
         setErrors(prev => prev + 1)
       }
@@ -151,8 +166,9 @@ const TextField = () => {
           className="
             flex 
           flex-wrap 
-          bg-transparent 
-            text-5xl
+          bg-transparent
+            
+            sm:text-5xl
             w-full 
             h-fit
             pl-2
