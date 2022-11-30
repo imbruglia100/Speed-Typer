@@ -80,7 +80,7 @@ const TextField = () => {
       if (letterIndex <= currentWordToCheckDiv.children.length - 1) {
         let currentLetterToCheckDiv = currentWordToCheckDiv.children[letterIndex]
         let nextLetterToCheck = currentWordToCheckDiv.children[letterIndex + 1]
-        
+
         nextLetterToCheck?.classList.remove("text-neutral-200")
         nextLetterToCheck?.classList.remove("text-red-600")
 
@@ -167,8 +167,7 @@ const TextField = () => {
             flex 
           flex-wrap 
           bg-transparent
-            
-            sm:text-5xl
+            text-4xl
             w-full 
             h-fit
             pl-2
@@ -180,13 +179,13 @@ const TextField = () => {
         <input id="wordInput"
           onChange={handleChange}
           spellCheck="false"
-          autoComplete="off"
+          autoCom plete="off"
           autoCapitalize="off"
           autoCorrect="off"
           data-gramm="false"
           data-gramm-editor='false'
           data-enable-grammarly="false"
-          className="cursor-default decoration-transparent text-transparent bg-transparent absolute z-10 outline-none"
+          className="cursor-default decoration-transparent text-transparent caret-transparent bg-transparent absolute z-10 outline-none"
           list="autocompleteOff"
 
         />
