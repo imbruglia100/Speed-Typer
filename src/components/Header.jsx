@@ -6,7 +6,7 @@ const Header = () => {
         <h1 className='
         text-orange-400
         font-mono
-        italic'>Measter of Keys</h1>
+        italic'>Master of Keys</h1>
     </div>
   )
 }
